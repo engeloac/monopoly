@@ -42,14 +42,14 @@ public class Player implements Serializable {
     private String name;
     @Column(name = "MONEY")
     private Integer money;
+    @OneToMany(mappedBy = "player2Fk")
+    private List<Game> gameList;
+    @OneToMany(mappedBy = "player1Fk")
+    private List<Game> gameList1;
+    @OneToMany(mappedBy = "player3Fk")
+    private List<Game> gameList2;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkPlayer")
     private List<Box> boxList;
-    @OneToMany(mappedBy = "player3Fk")
-    private List<Match> matchList;
-    @OneToMany(mappedBy = "player1Fk")
-    private List<Match> matchList1;
-    @OneToMany(mappedBy = "player2Fk")
-    private List<Match> matchList2;
 
     public Player() {
     }
@@ -83,39 +83,39 @@ public class Player implements Serializable {
     }
 
     @XmlTransient
+    public List<Game> getGameList() {
+        return gameList;
+    }
+
+    public void setGameList(List<Game> gameList) {
+        this.gameList = gameList;
+    }
+
+    @XmlTransient
+    public List<Game> getGameList1() {
+        return gameList1;
+    }
+
+    public void setGameList1(List<Game> gameList1) {
+        this.gameList1 = gameList1;
+    }
+
+    @XmlTransient
+    public List<Game> getGameList2() {
+        return gameList2;
+    }
+
+    public void setGameList2(List<Game> gameList2) {
+        this.gameList2 = gameList2;
+    }
+
+    @XmlTransient
     public List<Box> getBoxList() {
         return boxList;
     }
 
     public void setBoxList(List<Box> boxList) {
         this.boxList = boxList;
-    }
-
-    @XmlTransient
-    public List<Match> getMatchList() {
-        return matchList;
-    }
-
-    public void setMatchList(List<Match> matchList) {
-        this.matchList = matchList;
-    }
-
-    @XmlTransient
-    public List<Match> getMatchList1() {
-        return matchList1;
-    }
-
-    public void setMatchList1(List<Match> matchList1) {
-        this.matchList1 = matchList1;
-    }
-
-    @XmlTransient
-    public List<Match> getMatchList2() {
-        return matchList2;
-    }
-
-    public void setMatchList2(List<Match> matchList2) {
-        this.matchList2 = matchList2;
     }
 
     @Override
